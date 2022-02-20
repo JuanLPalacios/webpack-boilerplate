@@ -13,8 +13,8 @@ module.exports = {
     }),
   ],
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    path: path.resolve(__dirname),
     clean: true,
   },
   module: {
@@ -23,6 +23,18 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      { 
+        test: /\.js$/, 
+        use: ['source-map-loader'], 
+        enforce: 'pre' 
+      }
     ],
+  },
+  devtool: 'source-map',
+  devServer: {
+    static: {
+      directory: __dirname,
+    },
+    compress: true,
   },
 };
